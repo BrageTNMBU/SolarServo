@@ -5,7 +5,7 @@
 
 //DEFINES - USER MODIFIABLE------------------------------------
 #define DELAYINHOURS          0.0003 //Hours between each new rotation
-#define LUXCUTOFF             200    //For which lux value the system will assume night time (SKRIV HVA SOM ER MAKS MIN OG HVA SOM ER MER MINDRE)
+#define LUXCUTOFF             700    //For lux values lower than this - the system will assume night time 
 #define LUXDIFERENCETOLERANCE 10     //How much difference in lux the two sensors can have before deciding to move in either direction (EXCLUSIVE)! CANNOT BE 0!
 #define SERVO_PIN             9      //Which pin the servo signal is connected to 
 #define LEFT_PHOTORES         A0     //Which pin left photoresistor is connected to
