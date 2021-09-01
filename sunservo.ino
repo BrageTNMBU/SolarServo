@@ -72,7 +72,8 @@ Control directionofmostsunlight()
   }
   if (right == left)
   {
-    Serial.print("RIGHT = LEFT BUT NONE IS RETURNED! MISTAKE IN FUNCTION directionofmostsunlight"); //Debug message. This will return none and should not be reached due to difference check 
+    Serial.print("RIGHT = LEFT BUT NONE IS RETURNED! MISTAKE IN FUNCTION directionofmostsunlight"); 
+    //Debug message. This will return none and should not be reached due to difference check 
   }
   return NONE; //This should not happen
 }
@@ -84,7 +85,6 @@ void moveLeft(Control* modelControl, byte* iterations) //Movement to the left
     angle += 1;   //Increments angle (higher angle means movement to the left)
     Panelservo.write(angle); //Writes angle to servo
   }
-  Serial.print("LEFT");     //For debugging
   movement(modelControl, iterations); //Recursivly calls movement()
 }
 
@@ -95,7 +95,6 @@ void moveRight(Control* modelControl, byte* iterations) //Movement to the right
     angle -= 1; //Decrements angle (lower angle means movement to the right)
     Panelservo.write(angle); //Writes angle to servo
   }
-  Serial.print("RIGHT");     //For debugging
   movement(modelControl, iterations); //Recursivly calls movement()
   
 }
@@ -103,9 +102,6 @@ void movement(Control* modelControl, byte* iterations) //Calls which direction t
 {
   *iterations+=1; //Increments iterations
   delay(100);     //Delay to prevent the servo from moving to fast and damaging the model
-  Serial.print(*iterations); //FOR DEBUG: Prints iterations and the angle of servo
-  Serial.print(" ");
-  Serial.println(angle);
   if (*iterations < 180) //Is only run if the servo has not moved 180 times or more
   {
 
@@ -117,7 +113,7 @@ void movement(Control* modelControl, byte* iterations) //Calls which direction t
     }
     else if (*modelControl == STAY)       
     {
-      Serial.println("STAY");            //Prints STAY if both sides have about equal amount of sunlight
+      //no operation
     }
     else if (*modelControl == RIGHT)
     {
@@ -145,5 +141,6 @@ void loop() //Arduino loop function
     movement(&modelControl, &iterations); //Calls movement() with modelControl and iterations as reference
     
   }
-  delay(DELAYINHOURS*3600000); //Delays next execution by preset hours, delay() needs to get miliseconds as input, and hours is therefore multiplied by hour-to-miliseconds constant
+  delay(DELAYINHOURS*3600000); 
+  //Delays next execution by preset hours, delay() needs to get miliseconds as input, and hours is therefore multiplied by hour-to-miliseconds constant
 }
